@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id = "gallows">
+	</div>
+<script>
+var keyWord = ["silence", "celebration", "invention", "ceaseless", "gurgling", "intoxicant", "mohawk", "horizontal", "orangutang", "hoodwink"]
+
+var keyWordLength = keyWord.length;
+console.log(keyWordLength);
+
+var choosenWord
+function wordDice() {
+	var randomizer=Math.floor((Math.random() * keyWordLength) + 1);
+	console.log(randomizer);
+	choosenWord=keyWord[randomizer -1]
+	console.log(choosenWord);
+}
+wordDice()
+console.log(choosenWord);
+var choosenWordLength=choosenWord.length;
+console.log(choosenWordLength);
+// at this point, we have a randomly chosen word, and the length of it stored in global variables. Now we want to prompt the user for a letter.
+// well want this to be a form, but for now we can user prompt.
+alert (choosenWord);
+console.log(choosenWord.length)
+var wordBlob=document.getElementById("wordspace")
+
+var userLetter=prompt("Guess a letter in the mystery word. (will only read first letter)");
+
+//utilize the following formula for locating the poition of the specified letter.
+// in plain text, i want a function which will check for the 1) does the letter exist in the variable choosenWord
+// 2) find the first instance of the letter by position
+// 3) slice the string at the first hit
+// 4) check again
+// 5) if result === -1 terminate loop
+// I couldn't figure out how to do this as a loop, so I did it manually. trueHitLocation variables are returning the positiion of the userLetter within the choosenWord or an undefined variable
+var hitLocation;
+var multipleCheck;
+var secondHitLocation;
+var secondMultipleCheck;
+var thirdHitLocation;
+var thirdMultipleCheck;
+var fourthHitLocation;
+var trueSecondHitLocation;
+var trueThirdHitlocation;
+var trueFourthHitLocation;						
+hitLocation = choosenWord.indexOf(userLetter) +1;
+multipleCheck = choosenWord.slice(hitLocation);
+
+
+function iterationCheck() {
+if (hitLocation > 0) {
+secondHitLocation = multipleCheck.indexOf(userLetter) +1;
+secondMultipleCheck = multipleCheck.slice(secondHitLocation);
+thirdHitLocation = secondMultipleCheck.indexOf(userLetter) +1;
+thirdMultipleCheck = secondMultipleCheck.slice(thirdHitLocation);
+fourthHitLocation = thirdMultipleCheck.indexOf(userLetter);
+console.log("I am the hitLocation variable : " + hitLocation);
+console.log("I am the multipleCheck variable : " + multipleCheck);
+console.log("I am the secondHitLocation variable : " + secondHitLocation);
+console.log("I am the secondMultipleCheck variable : " + secondMultipleCheck);
+console.log("i am the thirdHitLocation varibale : " + thirdHitLocation);
+console.log("i am the thirdMultipleCheck variable: " + thirdMultipleCheck);
+console.log("I am the fourthHitLocation variable : " + fourthHitLocation);
+}
+else {
+	alert ("you done fucked up");
+}
+if (secondHitLocation > 0) {
+	trueSecondHitLocation = hitLocation + secondHitLocation;
+}
+if (thirdHitLocation > 0) {
+	trueThirdHitlocation = hitLocation + secondHitLocation + thirdHitLocation;
+}
+if (fourthHitLocation > 0) {
+	trueFourthHitLocaion = hitLocation + secondHitLocation + thirdHitLocation + fourthHitLocation;
+}
+console.log("true hit location variables : " + hitLocation + "," + trueSecondHitLocation + "," + trueThirdHitlocation + "," + trueFourthHitLocation)
+}
+
+iterationCheck()
+var noose = document.getElementById("gallows");
+console.log(noose)
+var spaces = [];
+function makeWord () {
+	for (var i=0; i < choosenWordLength; i++) {
+		spaces[i] = document.createElement("div");
+		noose.appendChild(spaces[i]);
+
+		console.log(spaces[i]);
+	}
+	}
+	makeWord()
+</script>
+</body>
