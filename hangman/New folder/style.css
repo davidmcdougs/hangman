@@ -1,6 +1,67 @@
+html {
+	background-color:black;
+	margin:0px;
+	padding:0px;
+}
+
+p {
+	color:lightgreen;
+	padding-top:5px;
+}
+form {
+	color:lightgreen;
+}
+#typetext {
+	position:relative;
+	position:bottom;
+}
+.container {
+	background-color:black;
+	margin:0px;
+	padding:0px;
+	width:100%;
+}
+#textworld {
+	border-style:solid;
+	border-color:lightgreen;
+	height:100%;
+	margin-top:5px;
+}
+#flavor {
+	height:800px;
+}
 .trials {
 	float:left;
-	height:10%
-	width:10%
+	height:40px;
+	width:40px;
+	background-color:green;
+	border-style:solid;
+	margin:2px;
+	border-color:lightgreen;
+	margin-top:5%;
+
+}
+#main {
+	background-color:black;
+	margin:0px;
+	padding:0px;
+}
+.number {
+	margin-top:45px;
+	text-decoration:underline;
+	font-weight: bold;
+	text-align: center;
+	color:lightgreen;
+}
+#gallows {
+	height:100%;
+	width:100%;
+	background-color:black;
+	position:relative;
+	float:left;
+}
+#passwordholder {
+	width:100%;
+	margin:0px;
 	background-color:black;
 }

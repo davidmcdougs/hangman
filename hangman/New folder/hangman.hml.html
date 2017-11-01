@@ -1,11 +1,36 @@
 <!doctype html>
 <html>
 <head>
+	<link rel="stylesheet" href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id = "gallows">
-	</div>
+	<div class="container">	
+		<div class="row" id="flavor">
+			<div class="col-lg-3">
+			</div>
+			<div class="col-lg-6" id="textworld">
+				<p>
+					$> Type start to begin
+				</p>
+				<form id="typetext">
+				 	$> 
+				</form id="typetext">		
+			</div>
+			<div class="col-lg-3">
+			</div>	
+		</div>	
+			<div class="row" id="passwordholder">
+				<div class="col-lg-3">
+				</div>	
+					<div class="col-lg-6" id="main">
+						<div id = "gallows">
+						</div>
+					</div>
+				<div class="col-lg-3">
+				</div>	
+			</div>	
+</div>			
 <script>
 var keyWord = ["silence", "celebration", "invention", "ceaseless", "gurgling", "intoxicant", "mohawk", "horizontal", "orangutang", "hoodwink"]
 
@@ -37,7 +62,7 @@ var userLetter=prompt("Guess a letter in the mystery word. (will only read first
 // 3) slice the string at the first hit
 // 4) check again
 // 5) if result === -1 terminate loop
-// I couldn't figure out how to do this as a loop, so I did it manually. trueHitLocation variables are returning the positiion of the userLetter within the choosenWord or an undefined variable
+// I couldn't figure out how to do this as a loop, so I did it manually. trueHitLocation variables are returning the positiion of the userLetter within the choosenWord or, if miss, an undefined variable
 var hitLocation;
 var multipleCheck;
 var secondHitLocation;
@@ -86,10 +111,17 @@ iterationCheck()
 var noose = document.getElementById("gallows");
 console.log(noose)
 var spaces = [];
+var letterCount = [];
 function makeWord () {
 	for (var i=0; i < choosenWordLength; i++) {
 		spaces[i] = document.createElement("div");
 		noose.appendChild(spaces[i]);
+		spaces[i].classList.add("trials");
+		letterCount[i] = document.createElement("p");
+		letterCount[i].id = "number"+(i+1);
+		spaces[i].appendChild(letterCount[i]);
+		document.getElementById("number"+(i+1)).innerHTML = "" + (i+1);
+		letterCount[i].classList.add("number");
 
 		console.log(spaces[i]);
 	}
