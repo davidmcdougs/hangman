@@ -10,12 +10,13 @@
 			<div class="col-lg-3">
 			</div>
 			<div class="col-lg-6" id="textworld">
-				<p>
+				<p id="computerVoice">
 					$> Type start to begin
 				</p>
+				<button id="confirm" class="button" onClick="run()">Submit</button>
 				<form id="typetext">
-				 	$> 
-				</form id="typetext">		
+					$><input type ="text" id="cli" onKeyup="listen()">
+				</form>			
 			</div>
 			<div class="col-lg-3">
 			</div>	
@@ -37,24 +38,47 @@ var keyWord = ["silence", "celebration", "invention", "ceaseless", "gurgling", "
 var keyWordLength = keyWord.length;
 console.log(keyWordLength);
 
-var choosenWord
+var choosenWord;
+var choosenWordLength
 function wordDice() {
 	var randomizer=Math.floor((Math.random() * keyWordLength) + 1);
 	console.log(randomizer);
 	choosenWord=keyWord[randomizer -1]
 	console.log(choosenWord);
+	choosenWordLength=choosenWord.length;
 }
 wordDice()
-console.log(choosenWord);
-var choosenWordLength=choosenWord.length;
-console.log(choosenWordLength);
-// at this point, we have a randomly chosen word, and the length of it stored in global variables. Now we want to prompt the user for a letter.
-// well want this to be a form, but for now we can user prompt.
-alert (choosenWord);
-console.log(choosenWord.length)
-var wordBlob=document.getElementById("wordspace")
 
-var userLetter=prompt("Guess a letter in the mystery word. (will only read first letter)");
+var listenResult;
+var onEnter;
+function listen() {
+	listenResult = document.getElementById("cli").value;
+	console.log(listenResult);
+}
+var submit;
+var nextLine
+var computerText
+var userField= document.getElementById("typetext")
+function run() {
+        submit = listenResult;
+        	if (submit === "start") {
+        		nextLine = document.getElementById("computerVoice");
+        		nextLine.innerHTML="$> Password required for entry. Please type 'hashfrag.exe' to attempt to break the password."
+        		// document.getElementById("textworld").appendChild(nextLine);
+        	}
+        	else {
+        		nextLine = document.getElementById("computerVoice");
+        		nextLine.innerHTML="$> Please type 'start' to begin."
+        	}
+        	if (submit === "hashfrag.exe") {
+        		
+        	}
+        	document.getElementById("cli").value = ""
+  	}
+  	
+console.log(computerText)
+
+// var userLetter=prompt("Guess a letter in the mystery word. (will only read first letter)");
 
 //utilize the following formula for locating the poition of the specified letter.
 // in plain text, i want a function which will check for the 1) does the letter exist in the variable choosenWord
@@ -76,7 +100,7 @@ var trueFourthHitLocation;
 hitLocation = choosenWord.indexOf(userLetter) +1;
 multipleCheck = choosenWord.slice(hitLocation);
 
-
+var userLetter= "a"
 function iterationCheck() {
 if (hitLocation > 0) {
 secondHitLocation = multipleCheck.indexOf(userLetter) +1;
@@ -107,7 +131,6 @@ if (fourthHitLocation > 0) {
 console.log("true hit location variables : " + hitLocation + "," + trueSecondHitLocation + "," + trueThirdHitlocation + "," + trueFourthHitLocation)
 }
 
-iterationCheck()
 var noose = document.getElementById("gallows");
 console.log(noose)
 var spaces = [];
@@ -126,6 +149,5 @@ function makeWord () {
 		console.log(spaces[i]);
 	}
 	}
-	makeWord()
 </script>
 </body>

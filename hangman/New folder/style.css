@@ -10,10 +10,23 @@ p {
 }
 form {
 	color:lightgreen;
+	background-color:black;
 }
+input[type=text] {
+	background-color:black;
+	color:lightgreen;
+	border:none;
+	width:80%;
+}
+
 #typetext {
-	position:relative;
-	position:bottom;
+	position:absolute;
+	bottom:0;
+	background-color:black;
+	color:lightgreen;
+	padding-right:60%
+	float:left;
+	width:90%;
 }
 .container {
 	background-color:black;
@@ -26,6 +39,8 @@ form {
 	border-color:lightgreen;
 	height:100%;
 	margin-top:5px;
+	position:relative;
+	color:lightgreen;
 }
 #flavor {
 	height:800px;
@@ -64,4 +79,10 @@ form {
 	width:100%;
 	margin:0px;
 	background-color:black;
+}
+#confirm {
+	position:absolute;
+	bottom:100px;
+	background-color:purple;
+	color:lightgreen;
 }
