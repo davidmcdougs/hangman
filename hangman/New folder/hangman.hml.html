@@ -11,9 +11,9 @@
 			</div>
 			<div class="col-lg-6" id="textworld">
 				<p id="computerVoice">
-					$> Type start to begin
+					$> Press submit to try and hack the password.
 				</p>
-				<button id="confirm" class="button" onClick="run()">Submit</button>
+				<button id="confirm" class="button" onClick="struggle()">Submit</button>
 				<form id="typetext">
 					$><input type ="text" id="cli" onKeyup="listen()">
 				</form>			
@@ -48,7 +48,6 @@ function wordDice() {
 	choosenWordLength=choosenWord.length;
 }
 wordDice()
-
 var listenResult;
 var onEnter;
 function listen() {
@@ -56,27 +55,46 @@ function listen() {
 	console.log(listenResult);
 }
 var submit;
-var nextLine
-var computerText
-var userField= document.getElementById("typetext")
-function run() {
+var nextLine; 
+var computerText;
+var guesses=10
+var pathFind
+function struggle() {
+	if (repeatStop != 1) {
+		makeWord();
+	}
+	else {
         submit = listenResult;
-        	if (submit === "start") {
-        		nextLine = document.getElementById("computerVoice");
-        		nextLine.innerHTML="$> Password required for entry. Please type 'hashfrag.exe' to attempt to break the password."
-        		// document.getElementById("textworld").appendChild(nextLine);
+        nextLine = document.getElementById("computerVoice");
+        		nextLine.innerHTML="$> The password contains "+ choosenWordLength + " letters. If you can guess one letter, I will reveal it for you.";
+        	if (submit.length > 1) {
+        		nextLine.innerHTML="$> Please use only a single letter"
         	}
         	else {
-        		nextLine = document.getElementById("computerVoice");
-        		nextLine.innerHTML="$> Please type 'start' to begin."
+        		submit = userLetter
+        		console.log(iterationCheck())    		
         	}
-        	if (submit === "hashfrag.exe") {
-        		
-        	}
-        	document.getElementById("cli").value = ""
+        }
+
+        	// if (submit === "start") {
+        	// 	nextLine = document.getElementById("computerVoice");
+        	// 	nextLine.innerHTML="$> Password required for entry. Please type 'hashfrag.exe' to attempt to break the password."
+        	// 	// document.getElementById("textworld").appendChild(nextLine);
+        	// }
+        	// else if (submit === "hashfrag.exe") {
+        	// 	makeWord()
+        	// 	nextLine = document.getElementById("computerVoice");
+        	// 	nextLine.innerHTML="$> The password contains "+ choosenWordLength + " letters. If you can guess one letter, I will reveal it for you.";
+
+        	// }
+        	// else {
+        	// 	nextLine = document.getElementById("computerVoice");
+        	// 	nextLine.innerHTML="$> Please type 'start' to begin."
+        	// }
+        	document.getElementById("cli").value = "";
   	}
   	
-console.log(computerText)
+console.log(computerText);
 
 // var userLetter=prompt("Guess a letter in the mystery word. (will only read first letter)");
 
@@ -97,11 +115,12 @@ var fourthHitLocation;
 var trueSecondHitLocation;
 var trueThirdHitlocation;
 var trueFourthHitLocation;						
-hitLocation = choosenWord.indexOf(userLetter) +1;
-multipleCheck = choosenWord.slice(hitLocation);
+
 
 var userLetter= "a"
 function iterationCheck() {
+	hitLocation = choosenWord.indexOf(userLetter) +1;
+	multipleCheck = choosenWord.slice(hitLocation);
 if (hitLocation > 0) {
 secondHitLocation = multipleCheck.indexOf(userLetter) +1;
 secondMultipleCheck = multipleCheck.slice(secondHitLocation);
@@ -135,6 +154,7 @@ var noose = document.getElementById("gallows");
 console.log(noose)
 var spaces = [];
 var letterCount = [];
+var repeatStop
 function makeWord () {
 	for (var i=0; i < choosenWordLength; i++) {
 		spaces[i] = document.createElement("div");
@@ -147,6 +167,7 @@ function makeWord () {
 		letterCount[i].classList.add("number");
 
 		console.log(spaces[i]);
+		repeatStop=1
 	}
 	}
 </script>
