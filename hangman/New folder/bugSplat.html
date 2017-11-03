@@ -31,8 +31,7 @@
 				<div class="col-lg-3">
 				</div>	
 			</div>	
-</div>	
-<!--So I did a TOOON of learning on this game. I wanted it to be scalable, and to use an array of words rather than just one single word. I'm aware of how fragile it is, but I have alrady put over 20 hours into this, and don't really want to work on debugging. You cannot use the enter button. You must press submit. You cannot submit an empty value or else you will get the first three letters for free. it does not feel for case. Regardless, I am insanely proud that I got this working. iterationcheck is garbage, thats the problem. -->		
+</div>			
 <script>
 var keyWord = ["silence", "celebration", "invention", "ceaseless", "gurgling", "intoxicant", "mohawk", "horizontal", "orangutang", "hoodwink"]
 
@@ -70,7 +69,7 @@ function struggle() {
 		userLetter= document.getElementById("cli").value;
 		userLetter= userLetter.charAt(0);
 		document.getElementById("cli").value = "";
-		if (userLetter.length > 0) {
+		if (userLetter != undefined) {
 		iterationCheck();
 		guesses--;
 	}
@@ -93,22 +92,22 @@ var trueFourthHitLocation;
 
 
 function iterationCheck() {
-	hitLocation = choosenWord.indexOf(userLetter) +1;
+	hitLocation = choosenWord.indexOf(userLetter);
 	multipleCheck = choosenWord.slice(hitLocation);
-if (hitLocation > 0) {
- secondHitLocation = 0;
- secondMultipleCheck = 0;
- thirdHitLocation= 0;
- thirdMultipleCheck= 0;
- fourthHitLocation= 0;
- trueSecondHitLocation= 0;
- trueThirdHitlocation=0;
- trueFourthHitLocation=0;							
-secondHitLocation = multipleCheck.indexOf(userLetter) +1;
+if (hitLocation >= 0) {
+ secondHitLocation = -1;
+ secondMultipleCheck = -1;
+ thirdHitLocation= -1;
+ thirdMultipleCheck= -1;
+ fourthHitLocation= -1;
+ trueSecondHitLocation= -1;
+ trueThirdHitlocation=-1;
+ trueFourthHitLocation=-1;							
+secondHitLocation = multipleCheck.indexOf(userLetter);
 secondMultipleCheck = multipleCheck.slice(secondHitLocation);
-thirdHitLocation = secondMultipleCheck.indexOf(userLetter) +1;
+thirdHitLocation = secondMultipleCheck.indexOf(userLetter);
 thirdMultipleCheck = secondMultipleCheck.slice(thirdHitLocation);
-fourthHitLocation = thirdMultipleCheck.indexOf(userLetter)+1;
+fourthHitLocation = thirdMultipleCheck.indexOf(userLetter);
 console.log("I am the hitLocation variable : " + hitLocation);
 console.log("I am the multipleCheck variable : " + multipleCheck);
 console.log("I am the secondHitLocation variable : " + secondHitLocation);
@@ -118,15 +117,15 @@ console.log("i am the thirdMultipleCheck variable: " + thirdMultipleCheck);
 console.log("I am the fourthHitLocation variable : " + fourthHitLocation);
 }
 else {
-	nextLine.innerHTML="$>Incorrect letter";
+	alert ("you done fucked up");
 }
-if (secondHitLocation > 0) {
+if (secondHitLocation >= 0) {
 	trueSecondHitLocation = hitLocation + secondHitLocation;
 }
-if (thirdHitLocation > 0) {
+if (thirdHitLocation >= 0) {
 	trueThirdHitlocation = hitLocation + secondHitLocation + thirdHitLocation;
 }
-if (fourthHitLocation > 0) {
+if (fourthHitLocation >= 0) {
 	trueFourthHitLocaion = hitLocation + secondHitLocation + thirdHitLocation + fourthHitLocation;
 }
 console.log("true hit location variables : " + hitLocation + "," + trueSecondHitLocation + "," + trueThirdHitlocation + "," + trueFourthHitLocation)
